@@ -82,7 +82,6 @@ class Frutilla(Personaje):
 
         #line loop
         glBegin(GL_LINE_LOOP)
-       # glColor3f(0, 180 / 255, 0)
         glColor3f(148/255, 0, 118/255)
         glVertex2f(l[0], l[1])
         glVertex2f(l[2], l[3])

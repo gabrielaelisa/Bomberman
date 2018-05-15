@@ -3,6 +3,7 @@ import os
 from Hero.Frutilla import *
 from Hero.Robot import *
 from Hero.Melon import *
+from Enemy.EvilPig import *
 from Muro import *
 from MuroDestructible import*
 from Model import *
@@ -14,14 +15,14 @@ def main():
     frutilla=Frutilla(5,100,100)
     robot= Robot(5, 200,200)
     melon= Melon(5, 250, 250)
-    muro= Muro(5, 20,20)
+    pig= EvilPig(5, 300, 300)
     laberinto=Laberinto(5,520,600)
-    muroDest= MuroDestructible(5,60, 20)
 
     ventana.pjs.append(laberinto)
     ventana.pjs.append(robot)
     ventana.pjs.append(melon)
     ventana.pjs.append(frutilla)
+    ventana.pjs.append(pig)
     run = True
     while run:
         for event in pygame.event.get():
