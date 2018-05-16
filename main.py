@@ -15,8 +15,7 @@ def main():
     frutilla=Frutilla(5,100,100)
     robot= Robot(5, 60,60)
     melon= Melon(5, 250, 250)
-    pig= EvilPig(5, 300, 300)
-    bomb= Bomb(5, 120, 120)
+    pig= EvilPig(5, 200, 200)
     penguin= EvilPenguin(5, 350, 350)
     laberinto=Laberinto(5,520,600)
 
@@ -26,7 +25,6 @@ def main():
     ventana.pjs.append(frutilla)
     ventana.pjs.append(pig)
     ventana.pjs.append(penguin)
-    ventana.pjs.append(bomb)
     run = True
     while run:
         for event in pygame.event.get():
@@ -49,6 +47,9 @@ def main():
 
                 if event.key == K_DOWN:
                     robot.move(laberinto.ocupados, 0, -1)
+
+                if event.key == K_a:
+                    robot.putBomb(laberinto)
 
         pygame.display.flip()  # actualizar pantalla
         pygame.time.wait(int(1000 / 30))  # ajusta a 30 fps

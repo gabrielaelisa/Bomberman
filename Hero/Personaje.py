@@ -18,8 +18,10 @@ class Personaje():
         self.color=rgb
         self.scale=scale
         self.lista = 0
+        self.step = self.scale * self.altura
+        self.direccion =(1,0)
         self.crear()
-        self.step= self.scale*self.altura
+
 
 
     def crear(self):
@@ -41,9 +43,18 @@ class Personaje():
     def getPosition(self):
         return((self.x0, self.y0))
 
-    def move(self, laberinto, xstep,ystep):
+    def move(self, laberinto, xstep, ystep):
         if (self.x0 + xstep*self.step, self.y0 + ystep*self.step) in laberinto:
             return
         else:
             self.x0+= xstep*self.step
             self.y0+= ystep*self.step
+           # self.direccion= (xstep, ystep)
+
+    def putBomb(self, laberinto):
+        #pos= (self.direccion[0] *self.step + self.x0, self.direccion[1]*self.step + self.x0)
+        pos= (self.x0, self.y0)
+        if pos in laberinto.ocupados:
+            return
+        else:
+            laberinto.putBomb(pos)

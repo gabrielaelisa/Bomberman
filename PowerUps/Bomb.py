@@ -2,6 +2,8 @@ from Hero.Personaje import *
 class Bomb(Personaje):
     def __init__(self, scale, x, y):
         super().__init__(scale, x, y)
+        self.x0-= self.altura*self.scale/2
+        self.y0 -= self.altura * self.scale / 2
 
 
     def figura(self):

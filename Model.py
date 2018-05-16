@@ -1,6 +1,7 @@
 from Hero.Personaje import *
 from Muro import *
 from MuroDestructible import *
+from PowerUps.Bomb import *
 
 class Laberinto():
     def __init__(self, scale, ALTO, ANCHO):
@@ -11,7 +12,7 @@ class Laberinto():
         self.ocupados=[]
         self.muros_indest=[]
         self.muros_dest=[]
-
+        self.bombas= []
         self.init()
 
     def init(self):
@@ -67,13 +68,15 @@ class Laberinto():
             self.muros_dest.append(MuroDestructible(self.scale,xpos,ypos))
             self.ocupados.append(pos)
 
-
-
     def figura(self):
-            for i in range(self.muros_indest.__len__()):
-                self.muros_indest[i].figura()
-            for i in range(self.muros_dest.__len__()):
-                self.muros_dest[i].figura()
+        for i in range(self.muros_indest.__len__()):
+            self.muros_indest[i].figura()
+
+        for i in range(self.muros_dest.__len__()):
+            self.muros_dest[i].figura()
+
+        for i in range(self.bombas.__len__()):
+            self.bombas[i].figura()
 
     def dibujar(self):
         for i in range(self.muros_indest.__len__()):
@@ -81,4 +84,17 @@ class Laberinto():
 
         for i in range(self.muros_dest.__len__()):
             self.muros_dest[i].dibujar()
+
+        for i in range(self.bombas.__len__()):
+            self.bombas[i].dibujar()
+
+    def putBomb(self, vector):
+        xpos = vector[0]
+        ypos = vector[1]
+        self.bombas.append(Bomb(self.scale, xpos, ypos))
+        self.ocupados.append(vector)
+
+
+
+
 
