@@ -5,6 +5,7 @@ from Model.PowerUps.Bomb import *
 class Laberinto():
     def __init__(self, scale, ALTO, ANCHO):
         self.scale=scale
+        self.step= 8*self.scale
         self.ancho =ANCHO
         self.alto= ALTO
         self.laberinto=[] #discretizacio del laberinto
@@ -16,7 +17,7 @@ class Laberinto():
 
     def init(self):
 
-        step= 8*self.scale
+        step= self.step
         halfstep= step/2
         #discretizacion del ancho en cuadrantes
         d_ancho = int(self.ancho/step)
@@ -94,8 +95,37 @@ class Laberinto():
         self.ocupados.append(vector)
 
     def destroyWall(self, Bomba):
-        self.ocupados.remove(Bomba.getPosition())
+        pos=Bomba.getPosition()
+        xpos = pos[0]
+        ypos = pos[1]
+        up= ypos+ self.step
+        down= ypos -self.step
+        left= xpos -self.step
+        right= xpos +self.step
+
+        for x in self.muros_dest:
+            #muro arriba
+            if x.isDestroyed(xpos,up):
+                self.muros_dest.remove(x)
+                self.ocupados.remove((xpos, up))
+            #muro abajo
+            if x.isDestroyed(xpos,down):
+                self.muros_dest.remove(x)
+                self.ocupados.remove((xpos, down))
+            #muro a la izquierda
+            if x.isDestroyed(left, ypos):
+                self.muros_dest.remove(x)
+                self.ocupados.remove((left, ypos))
+            # muro a la derecha
+            if x.isDestroyed(right, ypos):
+                self.muros_dest.remove(x)
+                self.ocupados.remove((right, ypos))
+
         self.bombas.remove(Bomba)
+        self.ocupados.remove(Bomba.getPosition())
+
+
+
 
 
 

@@ -63,3 +63,9 @@ class Personaje():
         else:
             #self.bomas+=1
             laberinto.putBomb(pos, time)
+
+    def isDestroyed(self, x, y):
+        if x== self.x0 and y== self.y0:
+            return True
+        else:
+            return False

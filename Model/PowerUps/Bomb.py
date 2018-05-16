@@ -62,7 +62,7 @@ class Bomb(Personaje):
     def getPosition(self):
         xpos = self.x0  + self.altura * self.scale / 2
         ypos = self.y0 + self.altura * self.scale / 2
-        return(xpos, ypos)
+        return (xpos, ypos)
 
 
      #   img = pygame.image.load(image)
