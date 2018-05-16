@@ -1,10 +1,11 @@
 from Model.Hero.Personaje import *
 
 class Bomb(Personaje):
-    def __init__(self, scale, x, y):
+    def __init__(self, scale, x, y, time):
         super().__init__(scale, x, y)
         self.x0-= self.altura*self.scale/2
         self.y0 -= self.altura * self.scale / 2
+        self.timetolive= time+3
 
     def figura(self):
         cuerpo= [4,4,3, 4, 4, 2.5]
@@ -54,7 +55,15 @@ class Bomb(Personaje):
         glVertex2f(l[6], l[7])
         glEnd()
 
-    #def destroyWall(self, surface, image):
+    def destroyWall(self, laberinto, time):
+        if time==self.timetolive:
+            laberinto.destroyWall(self)
+
+    def getPosition(self):
+        xpos = self.x0  + self.altura * self.scale / 2
+        ypos = self.y0 + self.altura * self.scale / 2
+        return(xpos, ypos)
+
 
      #   img = pygame.image.load(image)
       #  img = pygame.transform.scale(img, [self.scale * self.altura, self.scale * self.altura])

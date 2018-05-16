@@ -87,11 +87,15 @@ class Laberinto():
         for i in range(self.bombas.__len__()):
             self.bombas[i].dibujar()
 
-    def putBomb(self, vector):
+    def putBomb(self, vector, time):
         xpos = vector[0]
         ypos = vector[1]
-        self.bombas.append(Bomb(self.scale, xpos, ypos))
+        self.bombas.append(Bomb(self.scale, xpos, ypos, time))
         self.ocupados.append(vector)
+
+    def destroyWall(self, Bomba):
+        self.ocupados.remove(Bomba.getPosition())
+        self.bombas.remove(Bomba)
 
 
 

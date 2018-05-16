@@ -29,9 +29,16 @@ class Controller:
     def update(self):
         run = True
         while run:
+            time = int(pygame.time.get_ticks()/1000)
+            #verify if bomb exploded
+            bombas= self.laberinto.bombas
+            for b in bombas:
+                b.destroyWall(self.laberinto, time)
+
             for event in pygame.event.get():
                 if event.type == QUIT:  # cerrar ventana
                     run = False
+
                 if event.type == KEYDOWN:
 
                     if event.key == K_SPACE:
@@ -50,7 +57,8 @@ class Controller:
                         self.robot.move(self.laberinto.ocupados, 0, -1)
 
                     if event.key == K_a:
-                        self.robot.putBomb(self.laberinto)
+                        self.robot.putBomb(self.laberinto, time)
+
                    # if event.key== K_s:
                     #    self.laberinto.bombas[0].destroyWall(self.ventana.surface, 'images/explosion1.png')
 

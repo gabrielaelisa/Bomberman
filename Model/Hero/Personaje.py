@@ -22,6 +22,7 @@ class Personaje():
         self.step = self.scale * self.altura
         self.direccion =(1,0)
         self.crear()
+        self.bomas=0
 
 
 
@@ -52,10 +53,13 @@ class Personaje():
             self.y0+= ystep*self.step
            # self.direccion= (xstep, ystep)
 
-    def putBomb(self, laberinto):
-        #pos= (self.direccion[0] *self.step + self.x0, self.direccion[1]*self.step + self.x0)
+    def putBomb(self, laberinto, time):
+
         pos= (self.x0, self.y0)
         if pos in laberinto.ocupados:
             return
+        #if self.bomas==3:
+        #    return
         else:
-            laberinto.putBomb(pos)
+            #self.bomas+=1
+            laberinto.putBomb(pos, time)
