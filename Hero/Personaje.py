@@ -12,12 +12,14 @@ class Personaje():
         :param x0:
         :param y0:
         '''
+        self.altura=8
         self.x0=x0
         self.y0=y0
         self.color=rgb
         self.scale=scale
         self.lista = 0
         self.crear()
+        self.step= self.scale*self.altura
 
 
     def crear(self):
@@ -38,3 +40,10 @@ class Personaje():
 
     def getPosition(self):
         return((self.x0, self.y0))
+
+    def move(self, laberinto, xstep,ystep):
+        if (self.x0 + xstep*self.step, self.y0 + ystep*self.step) in laberinto:
+            return
+        else:
+            self.x0+= xstep*self.step
+            self.y0+= ystep*self.step

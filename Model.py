@@ -7,7 +7,7 @@ class Laberinto():
         self.scale=scale
         self.ancho =ANCHO
         self.alto= ALTO
-        self.laberinto=[]
+        self.laberinto=[] #discretizacio del laberinto
         self.ocupados=[]
         self.muros_indest=[]
         self.muros_dest=[]
@@ -16,11 +16,6 @@ class Laberinto():
 
     def init(self):
 
-        #hola=[1,2,3,4]
-        #chao=[4,3]
-        #l3 = [x for x in hola if x not in chao]
-        #print(l3)
-        #print(random.choice(l3))
         step= 8*self.scale
         halfstep= step/2
         #discretizacion del ancho en cuadrantes
