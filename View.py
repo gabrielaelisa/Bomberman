@@ -14,6 +14,7 @@ class View:
         self.alto=alto
         self.ancho=ancho
         self.pjs = []
+        self.surface = None
 
     def dibujar(self):
         # limpia la pantalla
@@ -26,7 +27,7 @@ class View:
 
         # inicializar pygame
         pygame.init()
-        pygame.display.set_mode((self.ancho, self.alto), OPENGL | DOUBLEBUF)
+        self.surface = pygame.display.set_mode((self.ancho, self.alto), OPENGL | DOUBLEBUF)
         #pygame.display.set_caption(titulo)
 
         # inicializar opengl

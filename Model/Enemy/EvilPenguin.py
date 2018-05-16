@@ -1,4 +1,4 @@
-from Hero.Personaje import *
+from Model.Hero.Personaje import *
 
 class EvilPenguin(Personaje):
     def __init__(self, scale, x, y):

@@ -1,4 +1,4 @@
-from Hero.Personaje import *
+from Model.Hero.Personaje import *
 
 class Robot(Personaje):
     def __init__(self, scale, x, y):

@@ -1,7 +1,6 @@
-from Hero.Personaje import *
-from Muro import *
-from MuroDestructible import *
-from PowerUps.Bomb import *
+from Model.Muro import *
+from Model.MuroDestructible import *
+from Model.PowerUps.Bomb import *
 
 class Laberinto():
     def __init__(self, scale, ALTO, ANCHO):

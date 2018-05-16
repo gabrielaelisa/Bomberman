@@ -1,10 +1,10 @@
-from Hero.Personaje import *
+from Model.Hero.Personaje import *
+
 class Bomb(Personaje):
     def __init__(self, scale, x, y):
         super().__init__(scale, x, y)
         self.x0-= self.altura*self.scale/2
         self.y0 -= self.altura * self.scale / 2
-
 
     def figura(self):
         cuerpo= [4,4,3, 4, 4, 2.5]
@@ -53,4 +53,10 @@ class Bomb(Personaje):
         glVertex2f(l[4], l[5])
         glVertex2f(l[6], l[7])
         glEnd()
+
+    #def destroyWall(self, surface, image):
+
+     #   img = pygame.image.load(image)
+      #  img = pygame.transform.scale(img, [self.scale * self.altura, self.scale * self.altura])
+       # surface.blit(img,(int(self.x0), int(self.y0)))
 

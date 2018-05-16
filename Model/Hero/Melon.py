@@ -1,5 +1,4 @@
-from Hero.Personaje import*
-
+from Model.Hero.Personaje import *
 class Melon(Personaje):
 
     def __init__(self, scale, x, y):

@@ -2,6 +2,7 @@ from OpenGL.GL import *
 from OpenGL.GL import *
 from math import *
 import random
+import pygame
 class Personaje():
 
     def __init__(self,scale,x0,y0,rgb=(1.0, 1.0, 1.0)):
