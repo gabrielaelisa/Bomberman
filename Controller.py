@@ -6,6 +6,8 @@ from Model.Enemy.EvilPig import *
 from Model.Hero.Frutilla import *
 from Model.Hero.Melon import *
 from Model.Hero.Robot import *
+from Model.PowerUps.MultipleBomb import *
+from Model.PowerUps.MoreFire import *
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # centrar pantalla
 
@@ -16,15 +18,20 @@ class Controller:
         self.frutilla = Frutilla(5, 100, 100)
         self.robot = Robot(5, 60, 60)
         self.melon = Melon(5, 250, 250)
-        self.pig = EvilPig(5, 200, 200)
+        #self.pig = EvilPig(5, 200, 200)
         self.penguin = EvilPenguin(5, 350, 350)
         self.laberinto = Laberinto(5, 520, 600)
+        self.power1 = MultipleBomb(5, 200, 200)
+        self.power2 = MoreFire(5, 240, 240)
+
         self.ventana.pjs.append(self.laberinto)
         self.ventana.pjs.append(self.robot)
         self.ventana.pjs.append(self.melon)
         self.ventana.pjs.append(self.frutilla)
-        self.ventana.pjs.append(self.pig)
+       # self.ventana.pjs.append(self.pig)
         self.ventana.pjs.append(self.penguin)
+        self.ventana.pjs.append(self.power1)
+        self.ventana.pjs.append(self.power2)
         self.ex1 = pygame.image.load(os.path.join("images/explosion1.png"))
     def update(self):
         run = True
