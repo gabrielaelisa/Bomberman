@@ -4,9 +4,10 @@ from Model.Hero.Personaje import *
 
 class MultipleBomb:
     def __init__(self, scale, x, y):
+        self.altura=8
         self.scale = scale
-        self.x0 = x
-        self.y0 = y
+        self.x0 = x - self.altura * self.scale / 2
+        self.y0 = y -self.altura * self.scale / 2
         self.bombArray = []
         self.init()
 
@@ -25,7 +26,6 @@ class MultipleBomb:
 
 
     def figura(self):
-
         for x in self.bombArray:
            x.figura()
 

@@ -1,6 +1,9 @@
 from Model.Muro import *
 from Model.MuroDestructible import *
 from Model.PowerUps.Bomb import *
+from Model.PowerUps.MultipleBomb import *
+from Model.PowerUps.MoreFire import *
+from Model.PowerUps.Salida import *
 
 class Laberinto():
     def __init__(self, scale, ALTO, ANCHO):
@@ -13,12 +16,14 @@ class Laberinto():
         self.muros_indest=[]
         self.muros_dest=[]
         self.bombas= []
+        self.powerups=[]
         self.init()
 
     def init(self):
 
         step= self.step
         halfstep= step/2
+
         #discretizacion del ancho en cuadrantes
         d_ancho = int(self.ancho/step)
 
@@ -58,7 +63,7 @@ class Laberinto():
                 ypos+= 2*step
             xpos+= 2*step
 
-        #creacion de las paredes destructibles interiores
+        #creacion de las paredes destructibles interiores y powerups
         self.ocupados = list(map(lambda x: x.getPosition(), self.muros_indest))
         desocupados=[x for x in self.laberinto if x not in self.ocupados]
         for x in range(int((i*j)/4)):
@@ -67,10 +72,24 @@ class Laberinto():
             ypos=pos[1]
             self.muros_dest.append(MuroDestructible(self.scale,xpos,ypos))
             self.ocupados.append(pos)
+            # even
+            if x==1:
+                self.powerups.append(Salida(self.scale,xpos,ypos))
+
+            if x%4==0:
+                choice= random.choice([1,2])
+                if choice==1:
+                    self.powerups.append(MultipleBomb(self.scale, xpos, ypos))
+                if choice==2:
+                    self.powerups.append(MoreFire(self.scale, xpos, ypos))
+
 
     def figura(self):
         for i in range(self.muros_indest.__len__()):
             self.muros_indest[i].figura()
+
+        for i in range(self.powerups.__len__()):
+            self.powerups[i].figura()
 
         for i in range(self.muros_dest.__len__()):
             self.muros_dest[i].figura()
@@ -81,6 +100,9 @@ class Laberinto():
     def dibujar(self):
         for i in range(self.muros_indest.__len__()):
             self.muros_indest[i].dibujar()
+
+        for i in range(self.powerups.__len__()):
+            self.powerups[i].dibujar()
 
         for i in range(self.muros_dest.__len__()):
             self.muros_dest[i].dibujar()

@@ -5,8 +5,6 @@ class MoreFire(Personaje):
         super().__init__(scale, x, y)
 
     def figura(self):
-        cuadrado = [-4, -4, -4, 4, 4, 4, 4, -4]
-        c = list(map(lambda x: self.scale * x, cuadrado))
         fuego_exterior = [-1, -4, 1, -4, 1, 4, -1, 4, #fuego vertical
                           -4, -1, -4 ,1 , 4 , 1, 4 ,-1] # fuego horizontal
         f1 = list(map(lambda x: self.scale * x, fuego_exterior))
@@ -16,13 +14,7 @@ class MoreFire(Personaje):
         f2 = list(map(lambda x: self.scale * x, fuego_interior))
         
         glBegin(GL_QUADS)
-        #cuadrado de fondo
-        """glColor3f(0, 0, 1)
-        glVertex2f(c[0], c[1])
-        glVertex2f(c[2], c[3])
-        glVertex2f(c[4], c[5])
-        glVertex2f(c[6], c[7])
-        """
+
         #fuego exterior
         glColor3f(1, 0, 0)
         glVertex2f(f1[0], f1[1])
