@@ -3,6 +3,7 @@ from Model.Hero.Personaje import *
 class Salida(Personaje):
     def __init__(self, scale, x, y):
         super().__init__(scale, x, y)
+        self.type="salida"
 
     def figura(self):
         cuadrado = [-4, -4, -4, 4, 4, 4, 4, -4]

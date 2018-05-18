@@ -10,6 +10,7 @@ class MultipleBomb:
         self.y0 = y -self.altura * self.scale / 2
         self.bombArray = []
         self.init()
+        self.type = "multiplebomb"
 
 
     def init(self):
@@ -29,3 +30,7 @@ class MultipleBomb:
         for x in self.bombArray:
            x.figura()
 
+    def getPosition(self):
+        x= self.x0 + self.altura * self.scale / 2
+        y = self.y0 + self.altura * self.scale / 2
+        return (x, y)

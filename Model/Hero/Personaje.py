@@ -1,8 +1,9 @@
 from OpenGL.GL import *
-from OpenGL.GL import *
 from math import *
 import random
 import pygame
+
+
 class Personaje():
 
     def __init__(self,scale,x0,y0,rgb=(1.0, 1.0, 1.0)):
@@ -23,6 +24,9 @@ class Personaje():
         self.direccion =(1,0)
         self.crear()
         self.bomas=0
+        self.multipleBomb= False
+        self.moreFire= False
+        self.exit= False
 
 
 
@@ -46,11 +50,12 @@ class Personaje():
         return((self.x0, self.y0))
 
     def move(self, laberinto, xstep, ystep):
-        if (self.x0 + xstep*self.step, self.y0 + ystep*self.step) in laberinto:
+        if (self.x0 + xstep*self.step, self.y0 + ystep*self.step) in laberinto.ocupados:
             return
         else:
             self.x0+= xstep*self.step
             self.y0+= ystep*self.step
+            laberinto.givePowerup(self)
            # self.direccion= (xstep, ystep)
 
     def putBomb(self, laberinto, time):
@@ -69,3 +74,11 @@ class Personaje():
             return True
         else:
             return False
+
+    def getPowerup(self, power):
+        if power.type == "multiplebomb":
+            self.multipleBomb= True
+        if power.type == "morefire":
+            self.moreFire= True
+        if power.type == "salida":
+            self.exit = True

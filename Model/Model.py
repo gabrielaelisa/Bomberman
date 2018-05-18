@@ -77,7 +77,7 @@ class Laberinto():
                 self.powerups.append(Salida(self.scale,xpos,ypos))
 
             if x%4==0:
-                choice= random.choice([1,2])
+                choice= random.choice([1, 2])
                 if choice==1:
                     self.powerups.append(MultipleBomb(self.scale, xpos, ypos))
                 if choice==2:
@@ -145,6 +145,13 @@ class Laberinto():
 
         self.bombas.remove(Bomba)
         self.ocupados.remove(Bomba.getPosition())
+
+    def givePowerup(self, hero):
+        for x in self.powerups:
+            pos = x.getPosition()
+            if pos == hero.getPosition():
+                hero.getPowerup(x)
+                self.powerups.remove(x)
 
 
 

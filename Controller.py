@@ -45,7 +45,7 @@ class Controller:
                 b.destroyWall(self.laberinto, time)
 
             if key_pressed[K_UP]:
-                self.robot.move(self.laberinto.ocupados, 0, 1)
+                self.robot.move(self.laberinto, 0, 1)
 
             for event in pygame.event.get():
                 if event.type == QUIT:  # cerrar ventana
@@ -57,16 +57,16 @@ class Controller:
                         pass
 
                     if event.key == K_RIGHT:
-                        self.robot.move(self.laberinto.ocupados, 1, 0)
+                        self.robot.move(self.laberinto, 1, 0)
 
                     if event.key == K_LEFT:
-                        self.robot.move(self.laberinto.ocupados, -1, 0)
+                        self.robot.move(self.laberinto, -1, 0)
 
                     if event.key == K_UP:
-                        self.robot.move(self.laberinto.ocupados, 0, 1)
+                        self.robot.move(self.laberinto, 0, 1)
 
                     if event.key == K_DOWN:
-                        self.robot.move(self.laberinto.ocupados, 0, -1)
+                        self.robot.move(self.laberinto, 0, -1)
 
                     if event.key == K_a:
                         self.robot.putBomb(self.laberinto, time)

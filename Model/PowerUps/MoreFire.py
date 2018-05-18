@@ -3,6 +3,7 @@ from Model.Hero.Personaje import *
 class MoreFire(Personaje):
     def __init__(self, scale, x, y):
         super().__init__(scale, x, y)
+        self.type = "morefire"
 
     def figura(self):
         fuego_exterior = [-1, -4, 1, -4, 1, 4, -1, 4, #fuego vertical
