@@ -65,8 +65,8 @@ class Laberinto():
 
         #creacion de las paredes destructibles interiores y powerups
         self.ocupados = list(map(lambda x: x.getPosition(), self.muros_indest))
-        desocupados=[x for x in self.laberinto if x not in self.ocupados]
         for x in range(int((i*j)/4)):
+            desocupados = [x for x in self.laberinto if x not in self.ocupados]
             pos= random.choice(desocupados)
             xpos= pos[0]
             ypos=pos[1]

@@ -16,7 +16,7 @@ class Controller:
         self.ventana = View(520, 600)
         self.ventana.init()
         self.frutilla = Frutilla(5, 100, 100)
-        self.robot = Robot(5, 60, 60)
+        self.robot = EvilPig(5, 60, 60)
         self.melon = Melon(5, 250, 250)
         self.pig = EvilPig(5, 200, 200)
         self.penguin = EvilPenguin(5, 350, 350)
@@ -46,6 +46,9 @@ class Controller:
 
             if key_pressed[K_UP]:
                 self.robot.move(self.laberinto, 0, 1)
+
+            if self.robot.salida:
+                run=False
 
             for event in pygame.event.get():
                 if event.type == QUIT:  # cerrar ventana

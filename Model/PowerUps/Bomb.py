@@ -3,7 +3,6 @@ from Model.Hero.Personaje import *
 class Bomb(Personaje):
     def __init__(self, scale, x, y, time):
         super().__init__(scale, x, y)
-        self.scale=scale
         self.x0-= self.altura*self.scale/2
         self.y0 -= self.altura * self.scale / 2
         self.timetolive= time+3

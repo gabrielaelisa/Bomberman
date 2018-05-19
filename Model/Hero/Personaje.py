@@ -26,9 +26,7 @@ class Personaje():
         self.bomas=0
         self.multipleBomb= False
         self.moreFire= False
-        self.exit= False
-
-
+        self.salida= False
 
     def crear(self):
         self.lista = glGenLists(1)
@@ -50,7 +48,10 @@ class Personaje():
         return((self.x0, self.y0))
 
     def move(self, laberinto, xstep, ystep):
-        if (self.x0 + xstep*self.step, self.y0 + ystep*self.step) in laberinto.ocupados:
+        pos= self.getPosition()
+        x=pos[0]
+        y=pos[1]
+        if (x + xstep*self.step, y + ystep*self.step) in laberinto.ocupados:
             return
         else:
             self.x0+= xstep*self.step
@@ -60,7 +61,7 @@ class Personaje():
 
     def putBomb(self, laberinto, time):
 
-        pos= (self.x0, self.y0)
+        pos= self.getPosition()
         if pos in laberinto.ocupados:
             return
         #if self.bomas==3:
@@ -81,4 +82,4 @@ class Personaje():
         if power.type == "morefire":
             self.moreFire= True
         if power.type == "salida":
-            self.exit = True
+            self.salida = True
