@@ -4,7 +4,7 @@ import random
 import pygame
 
 
-class Personaje():
+class Figure():
 
     def __init__(self,scale,x0,y0,rgb=(1.0, 1.0, 1.0)):
         '''
@@ -47,32 +47,6 @@ class Personaje():
     def getPosition(self):
         return((self.x0, self.y0))
 
-    def move(self, laberinto, xstep, ystep):
-        pos= self.getPosition()
-        x=pos[0]
-        y=pos[1]
-        if (x + xstep*self.step, y + ystep*self.step) in laberinto.ocupados:
-            return
-        else:
-            self.x0+= xstep*self.step
-            self.y0+= ystep*self.step
-            laberinto.givePowerup(self)
-           # self.direccion= (xstep, ystep)
-
-    def moveRandomly(self, laberinto):
-        pos = self.getPosition()
-        x = pos[0]
-        y = pos[1]
-        xstep= random.choice([-1, 0, 1])
-        if xstep!= 0:
-            ystep= 0
-        else:
-            ystep = random.choice([-1, 0, 1])
-        if (x + xstep * self.step, y + ystep * self.step) in laberinto.ocupados:
-            return
-        else:
-            self.x0 += xstep * self.step
-            self.y0 += ystep * self.step
 
     def putBomb(self, laberinto, time):
 

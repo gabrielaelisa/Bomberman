@@ -1,6 +1,6 @@
-from Model.Hero.Personaje import *
+from Model.Enemy.Enemy import *
 
-class EvilPig(Personaje):
+class Pig(Enemy):
     def __init__(self, scale, x, y):
         super().__init__(scale, x, y)
         self.x0 -= self.altura * self.scale / 2

@@ -1,5 +1,5 @@
-from Model.Hero.Personaje import *
-class Frutilla(Personaje):
+from Model.Hero.Hero import *
+class Frutilla(Hero):
     def __init__(self, scale, x, y):
         super().__init__(scale,x,y)
 

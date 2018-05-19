@@ -1,6 +1,5 @@
-from Model.Hero.Personaje import *
 from Model.PowerUps.Bomb import *
-from Model.Hero.Personaje import *
+
 
 class MultipleBomb:
     def __init__(self, scale, x, y):

@@ -1,6 +1,6 @@
-from Model.Hero.Personaje import *
+from Model.Enemy.Enemy import *
 
-class Robot(Personaje):
+class Robot(Enemy):
     def __init__(self, scale, x, y):
         super().__init__(scale,x,y)
 

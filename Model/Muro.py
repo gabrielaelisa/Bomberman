@@ -1,5 +1,5 @@
-from Model.Hero.Personaje import *
-class Muro(Personaje):
+from Model.Figure import *
+class Muro(Figure):
     def __init__(self, scale, x, y):
         super().__init__(scale, x, y)
 

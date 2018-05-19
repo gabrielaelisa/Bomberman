@@ -1,6 +1,6 @@
-from Model.Hero.Personaje import *
+from Model.Figure import *
 
-class Bomb(Personaje):
+class Bomb(Figure):
     def __init__(self, scale, x, y, time):
         super().__init__(scale, x, y)
         self.x0-= self.altura*self.scale/2

@@ -1,8 +1,11 @@
-from Model.Hero.Personaje import *
-class Melon(Personaje):
+from Model.Enemy.Enemy import *
+
+class Melon(Enemy):
 
     def __init__(self, scale, x, y):
         super().__init__(scale,x,y)
+        self.x0 -= self.altura * self.scale / 2
+        self.y0 -= self.altura * self.scale / 2
 
     def figura(self):
         #Brazos
@@ -98,3 +101,8 @@ class Melon(Personaje):
             glVertex(o[2] + cos(ang_i) * radio, o[3] + sin(ang_i) * radio)
 
         glEnd()
+
+    def getPosition(self):
+        xpos = self.x0 + self.altura * self.scale / 2
+        ypos = self.y0 + self.altura * self.scale / 2
+        return (xpos, ypos)

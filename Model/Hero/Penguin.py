@@ -1,6 +1,5 @@
-from Model.Hero.Personaje import *
-
-class EvilPenguin(Personaje):
+from Model.Hero.Hero import *
+class Penguin(Hero):
     def __init__(self, scale, x, y):
         super().__init__(scale, x, y)
 

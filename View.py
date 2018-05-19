@@ -1,13 +1,11 @@
-from OpenGL.GL import *
 from pygame.locals import *
-import pygame
 from OpenGL.GLU import *
 from Model.Model import *
-from Model.Enemy.EvilPenguin import *
-from Model.Enemy.EvilPig import *
+from Model.Hero.Penguin import *
+from Model.Enemy.Pig import *
 from Model.Hero.Frutilla import *
-from Model.Hero.Melon import *
-from Model.Hero.Robot import *
+from Model.Enemy.Melon import *
+from Model.Enemy.Robot import *
 
 class View:
     def __init__(self,alto,ancho):
@@ -59,17 +57,16 @@ class View:
         #init view objects
         self.frutilla = Frutilla(5, 140, 140)
         self.robot = Robot(5, 60, 60)
-        self.melon = Melon(5, 250, 250)
-        self.pig = EvilPig(5, 60, 60)
-        self.penguin = EvilPenguin(5, 350, 350)
+        self.melon = Melon(5, 140, 140)
+        self.pig = Pig(5, 60, 60)
         self.laberinto = Laberinto(5, 520, 600)
 
         self.pjs.append(self.laberinto)
-        self.pjs.append(self.robot)
+        self.pjs.append(self.frutilla)
         self.enemies.append(self.melon)
-        self.enemies.append(self.frutilla)
+        self.enemies.append(self.robot)
         self.enemies.append(self.pig)
-        self.enemies.append(self.penguin)
+
 
         return
 

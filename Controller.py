@@ -21,15 +21,15 @@ class Controller:
                 b.destroyWall(self.V.laberinto, time)
 
             if key_pressed[K_UP]:
-                self.V.robot.move(self.V.laberinto, 0, 1)
+                self.V.frutilla.move(self.V.laberinto, 0, 1)
                 
             # verify if game ended
-            if self.V.robot.salida:
+            if self.V.frutilla.salida:
                 run=False
 
             # make enemies move randombly
             for e in self.V.enemies:
-                e.moveRandomly(self.V.laberinto)
+                e.move(self.V.laberinto)
 
             for event in pygame.event.get():
                 if event.type == QUIT:  # cerrar V
@@ -41,19 +41,19 @@ class Controller:
                         pass
 
                     if event.key == K_RIGHT:
-                        self.V.robot.move(self.V.laberinto, 1, 0)
+                        self.V.frutilla.move(self.V.laberinto, 1, 0)
 
                     if event.key == K_LEFT:
-                        self.V.robot.move(self.V.laberinto, -1, 0)
+                        self.V.frutilla.move(self.V.laberinto, -1, 0)
 
                     if event.key == K_UP:
-                        self.V.robot.move(self.V.laberinto, 0, 1)
+                        self.V.frutilla.move(self.V.laberinto, 0, 1)
 
                     if event.key == K_DOWN:
-                        self.V.robot.move(self.V.laberinto, 0, -1)
+                        self.V.frutilla.move(self.V.laberinto, 0, -1)
 
                     if event.key == K_a:
-                        self.V.robot.putBomb(self.V.laberinto, time)
+                        self.V.frutilla.putBomb(self.V.laberinto, time)
 
 
 
