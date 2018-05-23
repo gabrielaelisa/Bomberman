@@ -18,8 +18,6 @@ class View:
         self.alto=alto
         self.ancho=ancho
         self.pjs = []
-        self.enemies= []
-        self.hero=[]
         self.surface = None
 
     def dibujar(self):
@@ -27,9 +25,6 @@ class View:
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
         for p in self.pjs:
-            p.dibujar()
-
-        for p in self.enemies:
             p.dibujar()
 
     def init(self):
@@ -55,19 +50,8 @@ class View:
 
 
         #init view objects
-        self.hero = Frutilla(5, 140, 140)
-        self.robot = Robot(5, 60, 60)
-        self.melon = Melon(5, 140, 140)
-        self.pig = Pig(5, 60, 60)
-        self.laberinto = Laberinto(5, 520, 600)
-
-        self.pjs.append(self.laberinto)
-        self.pjs.append(self.hero)
-        self.enemies.append(self.melon)
-        self.enemies.append(self.robot)
-        self.enemies.append(self.pig)
-
-
+        self.model = Laberinto(5, 520, 600)
+        self.pjs.append(self.model)
         return
 
 

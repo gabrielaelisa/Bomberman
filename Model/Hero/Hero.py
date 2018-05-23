@@ -50,4 +50,5 @@ class Hero(Figure):
         for b in self.bombas:
             if b.isReady(time):
                 self.bombas.remove(b)
-                b.destroyWall(laberinto)
+                b.destroyItems(laberinto)
+

@@ -1,9 +1,12 @@
 from Model.Muro import *
 from Model.MuroDestructible import *
-from Model.PowerUps.Bomb import *
 from Model.PowerUps.MultipleBomb import *
 from Model.PowerUps.MoreFire import *
 from Model.PowerUps.Salida import *
+from Model.Hero.Frutilla import *
+from Model.Enemy.Robot import *
+from Model.Enemy.Melon import *
+from Model.Enemy.Pig import *
 
 class Laberinto():
     def __init__(self, scale, ALTO, ANCHO):
@@ -15,10 +18,21 @@ class Laberinto():
         self.ocupados=[]
         self.muros_indest=[]
         self.muros_dest=[]
+        self.enemies= []
         self.powerups=[]
         self.init()
 
     def init(self):
+
+        self.hero = Frutilla(5, 140, 140)
+        robot = Robot(5, 60, 60)
+        melon = Melon(5, 140, 140)
+        pig = Pig(5, 60, 60)
+
+        self.enemies.append(melon)
+        self.enemies.append(robot)
+        self.enemies.append(pig)
+
 
         step= self.step
         halfstep= step/2
@@ -93,6 +107,11 @@ class Laberinto():
         for i in range(self.muros_dest.__len__()):
             self.muros_dest[i].figura()
 
+        for i in range(self.enemies.__len__()):
+            self.enemies[i].figura()
+
+        self.hero.figura()
+
 
     def dibujar(self):
         for i in range(self.muros_indest.__len__()):
@@ -104,13 +123,18 @@ class Laberinto():
         for i in range(self.muros_dest.__len__()):
             self.muros_dest[i].dibujar()
 
+        for i in range(self.enemies.__len__()):
+            self.enemies[i].dibujar()
+
+        self.hero.dibujar()
+
 
     def putBomb(self, vector, time):
         xpos = vector[0]
         ypos = vector[1]
         self.ocupados.append(vector)
 
-    def removeWall(self, Bomba):
+    def removeItems(self, Bomba):
         pos=Bomba.getPosition()
         xpos = pos[0]
         ypos = pos[1]
@@ -130,6 +154,10 @@ class Laberinto():
                 self.muros_dest.remove(x)
                 self.ocupados.remove(x.getPosition())
 
+        for e in self.enemies:
+            if e.getPosition() in destroyed:
+                self.enemies.remove(e)
+                
         self.ocupados.remove(Bomba.getPosition())
 
     def givePowerup(self, hero):

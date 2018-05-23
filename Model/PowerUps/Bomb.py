@@ -59,11 +59,8 @@ class Bomb(Figure):
     def isReady(self, time):
         return time == self.timetolive
 
-    def destroyWall(self, laberinto):
-        laberinto.removeWall(self)
-
-    def destroyEnemy(self, Enemy, time):
-        pass
+    def destroyItems(self, laberinto):
+        laberinto.removeItems(self)
 
     def destroyHero(self, Enemy, time):
         pass

@@ -16,7 +16,7 @@ class Controller:
             key_pressed = pygame.key.get_pressed()
 
             #verify if bomb exploded
-            self.V.hero.removeBomb(self.V.laberinto,time)
+            self.V.model.hero.removeBomb(self.V.model,time)
             """bombas= self.V.laberinto.bombas
             for b in bombas:
                 b.destroyWall(self.V.laberinto, time)
@@ -37,12 +37,12 @@ class Controller:
                 self.V.hero.move(self.V.laberinto, 1, 0)
              """
             # verify if game ended
-            if self.V.hero.salida:
+            if self.V.model.hero.salida:
                 run=False
 
             # make enemies move randombly
-            for e in self.V.enemies:
-                e.move(self.V.laberinto, pygame.time.get_ticks())
+            for e in self.V.model.enemies:
+                e.move(self.V.model, pygame.time.get_ticks())
 
             for event in pygame.event.get():
                 if event.type == QUIT:  # cerrar V
@@ -54,19 +54,19 @@ class Controller:
                         pass
 
                     if event.key == K_RIGHT:
-                        self.V.hero.move(self.V.laberinto, 1, 0)
+                        self.V.model.hero.move(self.V.model, 1, 0)
 
                     if event.key == K_LEFT:
-                        self.V.hero.move(self.V.laberinto, -1, 0)
+                        self.V.model.hero.move(self.V.model, -1, 0)
 
                     if event.key == K_UP:
-                        self.V.hero.move(self.V.laberinto, 0, 1)
+                        self.V.model.hero.move(self.V.model, 0, 1)
 
                     if event.key == K_DOWN:
-                        self.V.hero.move(self.V.laberinto, 0, -1)
+                        self.V.model.hero.move(self.V.model, 0, -1)
 
                     if event.key == K_a:
-                        self.V.hero.putBomb(self.V.laberinto, time)
+                        self.V.model.hero.putBomb(self.V.model, time)
 
 
 
