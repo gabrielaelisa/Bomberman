@@ -56,9 +56,18 @@ class Bomb(Figure):
         glVertex2f(l[6], l[7])
         glEnd()
 
-    def destroyWall(self, laberinto, time):
-        if time==self.timetolive:
-            laberinto.destroyWall(self)
+    def isReady(self, time):
+        return time == self.timetolive
+
+    def destroyWall(self, laberinto):
+        laberinto.removeWall(self)
+
+    def destroyEnemy(self, Enemy, time):
+        pass
+
+    def destroyHero(self, Enemy, time):
+        pass
+
 
     def getPosition(self):
         xpos = self.x0  + self.altura * self.scale / 2

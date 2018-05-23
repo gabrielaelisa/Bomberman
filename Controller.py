@@ -16,20 +16,33 @@ class Controller:
             key_pressed = pygame.key.get_pressed()
 
             #verify if bomb exploded
-            bombas= self.V.laberinto.bombas
+            self.V.hero.removeBomb(self.V.laberinto,time)
+            """bombas= self.V.laberinto.bombas
             for b in bombas:
                 b.destroyWall(self.V.laberinto, time)
-
+                b.destroyEnemy(self.V.enemies, time)
+                b.destroyHero(self.V.hero, time)
+            """
+            """"
             if key_pressed[K_UP]:
-                self.V.frutilla.move(self.V.laberinto, 0, 1)
-                
+                self.V.hero.move(self.V.laberinto, 0, 1)
+
+            if key_pressed[K_DOWN]:
+                self.V.hero.move(self.V.laberinto, 0, -1)
+
+            if key_pressed[K_LEFT]:
+                self.V.hero.move(self.V.laberinto, -1, 0)
+
+            if key_pressed[K_RIGHT]:
+                self.V.hero.move(self.V.laberinto, 1, 0)
+             """
             # verify if game ended
-            if self.V.frutilla.salida:
+            if self.V.hero.salida:
                 run=False
 
             # make enemies move randombly
             for e in self.V.enemies:
-                e.move(self.V.laberinto)
+                e.move(self.V.laberinto, pygame.time.get_ticks())
 
             for event in pygame.event.get():
                 if event.type == QUIT:  # cerrar V
@@ -41,19 +54,19 @@ class Controller:
                         pass
 
                     if event.key == K_RIGHT:
-                        self.V.frutilla.move(self.V.laberinto, 1, 0)
+                        self.V.hero.move(self.V.laberinto, 1, 0)
 
                     if event.key == K_LEFT:
-                        self.V.frutilla.move(self.V.laberinto, -1, 0)
+                        self.V.hero.move(self.V.laberinto, -1, 0)
 
                     if event.key == K_UP:
-                        self.V.frutilla.move(self.V.laberinto, 0, 1)
+                        self.V.hero.move(self.V.laberinto, 0, 1)
 
                     if event.key == K_DOWN:
-                        self.V.frutilla.move(self.V.laberinto, 0, -1)
+                        self.V.hero.move(self.V.laberinto, 0, -1)
 
                     if event.key == K_a:
-                        self.V.frutilla.putBomb(self.V.laberinto, time)
+                        self.V.hero.putBomb(self.V.laberinto, time)
 
 
 

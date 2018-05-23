@@ -55,14 +55,14 @@ class View:
 
 
         #init view objects
-        self.frutilla = Frutilla(5, 140, 140)
+        self.hero = Frutilla(5, 140, 140)
         self.robot = Robot(5, 60, 60)
         self.melon = Melon(5, 140, 140)
         self.pig = Pig(5, 60, 60)
         self.laberinto = Laberinto(5, 520, 600)
 
         self.pjs.append(self.laberinto)
-        self.pjs.append(self.frutilla)
+        self.pjs.append(self.hero)
         self.enemies.append(self.melon)
         self.enemies.append(self.robot)
         self.enemies.append(self.pig)

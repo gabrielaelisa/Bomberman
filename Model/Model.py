@@ -15,7 +15,6 @@ class Laberinto():
         self.ocupados=[]
         self.muros_indest=[]
         self.muros_dest=[]
-        self.bombas= []
         self.powerups=[]
         self.init()
 
@@ -94,8 +93,6 @@ class Laberinto():
         for i in range(self.muros_dest.__len__()):
             self.muros_dest[i].figura()
 
-        for i in range(self.bombas.__len__()):
-            self.bombas[i].figura()
 
     def dibujar(self):
         for i in range(self.muros_indest.__len__()):
@@ -107,43 +104,32 @@ class Laberinto():
         for i in range(self.muros_dest.__len__()):
             self.muros_dest[i].dibujar()
 
-        for i in range(self.bombas.__len__()):
-            self.bombas[i].dibujar()
 
     def putBomb(self, vector, time):
         xpos = vector[0]
         ypos = vector[1]
-        self.bombas.append(Bomb(self.scale, xpos, ypos, time))
         self.ocupados.append(vector)
 
-    def destroyWall(self, Bomba):
+    def removeWall(self, Bomba):
         pos=Bomba.getPosition()
         xpos = pos[0]
         ypos = pos[1]
+        #muro arriba
         up= ypos+ self.step
+        #muro abajo
         down= ypos -self.step
+        #muro a la izquierda
         left= xpos -self.step
+        #muro a la derecha
         right= xpos +self.step
 
-        for x in self.muros_dest:
-            #muro arriba
-            if x.isDestroyed(xpos,up):
-                self.muros_dest.remove(x)
-                self.ocupados.remove((xpos, up))
-            #muro abajo
-            if x.isDestroyed(xpos,down):
-                self.muros_dest.remove(x)
-                self.ocupados.remove((xpos, down))
-            #muro a la izquierda
-            if x.isDestroyed(left, ypos):
-                self.muros_dest.remove(x)
-                self.ocupados.remove((left, ypos))
-            # muro a la derecha
-            if x.isDestroyed(right, ypos):
-                self.muros_dest.remove(x)
-                self.ocupados.remove((right, ypos))
+        destroyed=[(xpos,up), (xpos,down), (left,ypos), (right, ypos)]
 
-        self.bombas.remove(Bomba)
+        for x in self.muros_dest:
+            if x.getPosition() in destroyed:
+                self.muros_dest.remove(x)
+                self.ocupados.remove(x.getPosition())
+
         self.ocupados.remove(Bomba.getPosition())
 
     def givePowerup(self, hero):
