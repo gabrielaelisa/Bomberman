@@ -1,3 +1,4 @@
+import operator
 from Model.Muro import *
 from Model.MuroDestructible import *
 from Model.PowerUps.MultipleBomb import *
@@ -7,6 +8,8 @@ from Model.Hero.Frutilla import *
 from Model.Enemy.Robot import *
 from Model.Enemy.Melon import *
 from Model.Enemy.Pig import *
+
+ops = {"+": operator.add, "-": operator.sub}
 
 class Laberinto():
     def __init__(self, scale, ALTO, ANCHO):
@@ -157,8 +160,54 @@ class Laberinto():
         for e in self.enemies:
             if e.getPosition() in destroyed:
                 self.enemies.remove(e)
-                
+
         self.ocupados.remove(Bomba.getPosition())
+
+    def loop(self, v_x, v_pos, s_pos, op):
+        """
+
+        :param v_x: boolean is x variable? if False-> y is variable
+        :param v_pos: variable position
+        :param s_pos: static position
+        :param op: incrementation or decrementation
+        :return: void
+        """
+
+        indest = list(map(lambda x: x.getPosition(), self.muros_indest))
+        for p in range(int(v_pos), int(v_pos + ops[op](0,1)* 4*self.step), int(ops[op](0,1)*self.step)):
+            print(p)
+            if v_x:
+                point= (p, s_pos)
+
+            if not v_x:
+                point=(s_pos, p)
+
+            if point in indest:
+                return
+            else:
+                for m in self.muros_dest:
+                    if m.getPosition()== point:
+                        self.muros_dest.remove(m)
+                        self.ocupados.remove(m.getPosition())
+                for e in self.enemies:
+                    if e.getPosition()== point:
+                        self.enemies.remove(e)
+
+
+
+    def removeMoreItems(self,Bomb):
+        pos = Bomb.getPosition()
+        xpos = pos[0]
+        ypos = pos[1]
+        #abajo:
+        self.loop(False,ypos,xpos, "-")
+        #arriba:
+        self.loop(False,ypos,xpos,"+")
+        #izquierda
+        self.loop(True,xpos, ypos, "-")
+        #derecha
+        self.loop(True,xpos,ypos, "+")
+        self.ocupados.remove(Bomb.getPosition())
 
     def givePowerup(self, hero):
         for x in self.powerups:

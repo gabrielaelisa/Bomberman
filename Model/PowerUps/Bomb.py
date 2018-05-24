@@ -62,6 +62,9 @@ class Bomb(Figure):
     def destroyItems(self, laberinto):
         laberinto.removeItems(self)
 
+    def destroyMoreItems(self, laberinto):
+        laberinto.removeMoreItems(self)
+
     def destroyHero(self, Enemy, time):
         pass
 
