@@ -200,7 +200,7 @@ class Laberinto():
                     if e.getPosition()== point:
                         self.enemies.remove(e)
                 if self.hero.getPosition() ==point:
-                    self.hero.dead= True
+                    self.hero.isKilled()
 
 
 
@@ -224,6 +224,11 @@ class Laberinto():
             if pos == hero.getPosition():
                 hero.getPowerup(x)
                 self.powerups.remove(x)
+
+    def removeHero(self):
+        for e in self.enemies:
+            if e.killHero(self.hero):
+                self.hero.isKilled()
 
 
 

@@ -73,5 +73,5 @@ class Controller:
 
             pygame.display.flip()  # actualizar pantalla
             pygame.time.wait(int(1000 / 30))  # ajusta a 30 fps
-            self.V.dibujar()
+            self.V.update()
         pygame.quit()

@@ -20,6 +20,10 @@ class View:
         self.pjs = []
         self.surface = None
 
+    def update(self):
+        self.model.removeHero()
+        self.dibujar()
+
     def dibujar(self):
         # limpia la pantalla
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)

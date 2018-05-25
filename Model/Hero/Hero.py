@@ -56,3 +56,5 @@ class Hero(Figure):
                     return
                 b.destroyItems(laberinto)
 
+    def isKilled(self):
+        self.dead= True

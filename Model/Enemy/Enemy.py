@@ -23,3 +23,6 @@ class Enemy(Figure):
             else:
                 self.x0 += xstep * self.step
                 self.y0 += ystep * self.step
+
+    def killHero(self,hero):
+        return self.getPosition()==hero.getPosition()
