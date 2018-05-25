@@ -39,7 +39,8 @@ class Controller:
             # verify if game ended
             if self.V.model.hero.salida:
                 run=False
-
+            if self.V.model.hero.dead:
+                run=False
             # make enemies move randombly
             for e in self.V.model.enemies:
                 e.move(self.V.model, pygame.time.get_ticks())

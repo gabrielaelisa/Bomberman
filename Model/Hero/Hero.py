@@ -9,6 +9,7 @@ class Hero(Figure):
         self.multipleBomb = False
         self.moreFire = False
         self.salida = False
+        self.dead = False
 
     def move(self, laberinto, xstep, ystep):
         pos= self.getPosition()

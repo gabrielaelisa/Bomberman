@@ -27,14 +27,8 @@ class Laberinto():
 
     def init(self):
 
-        self.hero = Frutilla(5, 140, 140)
-        robot = Robot(5, 60, 60)
-        melon = Melon(5, 140, 140)
-        pig = Pig(5, 60, 60)
-
-        self.enemies.append(melon)
-        self.enemies.append(robot)
-        self.enemies.append(pig)
+        self.hero = Frutilla(5, 60, 460)
+        heropath= [(60,460), (100,460), (140,460)]
 
 
         step= self.step
@@ -52,7 +46,6 @@ class Laberinto():
             for m in range(d_alto):
                 y= halfstep + m*step
                 self.laberinto.append((x,y))
-        #print(self.laberinto)
 
         i= d_ancho
         j= d_alto -2
@@ -82,7 +75,7 @@ class Laberinto():
         #creacion de las paredes destructibles interiores y powerups
         self.ocupados = list(map(lambda x: x.getPosition(), self.muros_indest))
         for x in range(int((i*j)/4)):
-            desocupados = [x for x in self.laberinto if x not in self.ocupados]
+            desocupados = [x for x in self.laberinto if x not in self.ocupados and x not in heropath]
             pos= random.choice(desocupados)
             xpos= pos[0]
             ypos=pos[1]
@@ -99,6 +92,18 @@ class Laberinto():
                 if choice==2:
                     self.powerups.append(MoreFire(self.scale, xpos, ypos))
 
+        # creacion de los enemigos en posiciones aleatorias
+        enemies = list(map(lambda x: x.getPosition(), self.enemies))
+        desocupados = [x for x in self.laberinto if x not in self.ocupados and x not in enemies]
+        pos = random.choice(desocupados)
+        robot = Robot(self.scale, pos[0], pos[1])
+        self.enemies.append(robot)
+        pos2= random.choice(desocupados)
+        melon = Melon(self.scale,pos[0] , pos2[1])
+        self.enemies.append(melon)
+        pos3 = random.choice(desocupados)
+        pig = Pig(self.scale, pos3[0], pos3[1])
+        self.enemies.append(pig)
 
     def figura(self):
         for i in range(self.muros_indest.__len__()):
@@ -161,6 +166,9 @@ class Laberinto():
             if e.getPosition() in destroyed:
                 self.enemies.remove(e)
 
+        if self.hero.getPosition() in destroyed:
+            self.hero.dead=True
+
         self.ocupados.remove(Bomba.getPosition())
 
     def loop(self, v_x, v_pos, s_pos, op):
@@ -175,7 +183,6 @@ class Laberinto():
 
         indest = list(map(lambda x: x.getPosition(), self.muros_indest))
         for p in range(int(v_pos), int(v_pos + ops[op](0,1)* 4*self.step), int(ops[op](0,1)*self.step)):
-            print(p)
             if v_x:
                 point= (p, s_pos)
 
@@ -192,6 +199,8 @@ class Laberinto():
                 for e in self.enemies:
                     if e.getPosition()== point:
                         self.enemies.remove(e)
+                if self.hero.getPosition() ==point:
+                    self.hero.dead= True
 
 
 

@@ -65,10 +65,6 @@ class Bomb(Figure):
     def destroyMoreItems(self, laberinto):
         laberinto.removeMoreItems(self)
 
-    def destroyHero(self, Enemy, time):
-        pass
-
-
     def getPosition(self):
         xpos = self.x0  + self.altura * self.scale / 2
         ypos = self.y0 + self.altura * self.scale / 2
