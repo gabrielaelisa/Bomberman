@@ -71,7 +71,3 @@ class Bomb(Figure):
         return (xpos, ypos)
 
 
-     #   img = pygame.image.load(image)
-      #  img = pygame.transform.scale(img, [self.scale * self.altura, self.scale * self.altura])
-       # surface.blit(img,(int(self.x0), int(self.y0)))
-

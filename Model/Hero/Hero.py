@@ -6,7 +6,6 @@ class Hero(Figure):
         super().__init__(scale,x,y)
         self.bombas = []
         self.maxBomb=2
-        self.multipleBomb = False
         self.moreFire = False
         self.salida = False
         self.dead = False

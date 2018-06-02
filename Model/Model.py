@@ -94,7 +94,7 @@ class Laberinto():
 
         # creacion de los enemigos en posiciones aleatorias
         enemies = list(map(lambda x: x.getPosition(), self.enemies))
-        desocupados = [x for x in self.laberinto if x not in self.ocupados and x not in enemies]
+        desocupados = [x for x in self.laberinto if x not in self.ocupados and x not in enemies and x not in heropath]
         pos = random.choice(desocupados)
         robot = Robot(self.scale, pos[0], pos[1])
         self.enemies.append(robot)

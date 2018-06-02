@@ -1,11 +1,7 @@
 from pygame.locals import *
 from OpenGL.GLU import *
 from Model.Model import *
-from Model.Hero.Penguin import *
-from Model.Enemy.Pig import *
-from Model.Hero.Frutilla import *
-from Model.Enemy.Melon import *
-from Model.Enemy.Robot import *
+from Model.PowerUps.Explosion import *
 
 class View:
     def __init__(self,alto,ancho):
@@ -30,6 +26,7 @@ class View:
 
         for p in self.pjs:
             p.dibujar()
+        self.explosion.dibujar()
 
     def init(self):
 
@@ -39,6 +36,7 @@ class View:
         #pygame.display.set_caption(titulo)
 
         # init opengl
+
         glViewport(0, 0, self.ancho, self.alto)
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
@@ -52,9 +50,9 @@ class View:
         glClearDepth(1.0)
         # glDisable(GL_DEPTH_TEST)
 
-
         #init view objects
         self.model = Laberinto(5, 520, 600)
+        self.explosion= Explosion(5, 140, 140)
         self.pjs.append(self.model)
         return
 
