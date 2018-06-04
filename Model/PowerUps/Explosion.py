@@ -1,10 +1,10 @@
 from Model.Figure import *
 class Explosion(Figure):
-    def __init__(self, scale, x, y):
+    def __init__(self, scale, x, y, time):
         super().__init__(scale, x, y)
         self.x0-= self.altura*self.scale/2
         self.y0 -= self.altura * self.scale / 2
-        #self.timetolive= time+3
+        self.timetolive= time+2
 
     def figura(self):
         t1=[2,4, 6,4, 4, 8 ]
@@ -52,3 +52,18 @@ class Explosion(Figure):
             ang_i = ang * i
             glVertex(C2[0] + cos(ang_i) * radio, C2[1] + sin(ang_i) * radio)
         glEnd()
+
+    def getPosition(self):
+        xpos = self.x0 + self.altura * self.scale / 2
+        ypos = self.y0 + self.altura * self.scale / 2
+        return (xpos, ypos)
+
+    def isReady(self, time):
+        return time >= self.timetolive
+
+    def burn(self,time, laberinto):
+        if self.isReady(time):
+            laberinto.removeExplosion(self)
+            return
+        else:
+            laberinto.burnItems(self)

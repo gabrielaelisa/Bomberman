@@ -13,29 +13,11 @@ class Controller:
         run = True
         while run:
             time = int(pygame.time.get_ticks()/1000)
-            key_pressed = pygame.key.get_pressed()
+            #key_pressed = pygame.key.get_pressed()
 
             #verify if bomb exploded
             self.V.model.hero.removeBomb(self.V.model,time)
-            """bombas= self.V.laberinto.bombas
-            for b in bombas:
-                b.destroyWall(self.V.laberinto, time)
-                b.destroyEnemy(self.V.enemies, time)
-                b.destroyHero(self.V.hero, time)
-            """
-            """"
-            if key_pressed[K_UP]:
-                self.V.hero.move(self.V.laberinto, 0, 1)
-
-            if key_pressed[K_DOWN]:
-                self.V.hero.move(self.V.laberinto, 0, -1)
-
-            if key_pressed[K_LEFT]:
-                self.V.hero.move(self.V.laberinto, -1, 0)
-
-            if key_pressed[K_RIGHT]:
-                self.V.hero.move(self.V.laberinto, 1, 0)
-             """
+            self.V.model.checkExplosion(time)
             # verify if game ended
             if self.V.model.hero.salida:
                 run=False

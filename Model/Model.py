@@ -2,6 +2,7 @@ import operator
 from Model.Muro import *
 from Model.MuroDestructible import *
 from Model.PowerUps.MultipleBomb import *
+from Model.PowerUps.Explosion import *
 from Model.PowerUps.MoreFire import *
 from Model.PowerUps.Salida import *
 from Model.Hero.Frutilla import *
@@ -23,6 +24,7 @@ class Laberinto():
         self.muros_dest=[]
         self.enemies= []
         self.powerups=[]
+        self.explosion= []
         self.init()
 
     def init(self):
@@ -115,6 +117,9 @@ class Laberinto():
         for i in range(self.muros_dest.__len__()):
             self.muros_dest[i].figura()
 
+        for i in range(self.explosion.__len__()):
+            self.explosion[i].figura()
+
         for i in range(self.enemies.__len__()):
             self.enemies[i].figura()
 
@@ -131,6 +136,9 @@ class Laberinto():
         for i in range(self.muros_dest.__len__()):
             self.muros_dest[i].dibujar()
 
+        for i in range(self.explosion.__len__()):
+            self.explosion[i].dibujar()
+
         for i in range(self.enemies.__len__()):
             self.enemies[i].dibujar()
 
@@ -142,10 +150,21 @@ class Laberinto():
         ypos = vector[1]
         self.ocupados.append(vector)
 
+    def burnItems(self, explosion):
+        for e in self.enemies:
+            if e.getPosition()== explosion.getPosition():
+                self.enemies.remove(e)
+        if self.hero.getPosition()==explosion.getPosition():
+            self.hero.isKilled()
+
+
+
     def removeItems(self, Bomba):
         pos=Bomba.getPosition()
         xpos = pos[0]
         ypos = pos[1]
+        self.explosion.append(Explosion(self.scale, xpos, ypos, Bomba.getTime()))
+
         #muro arriba
         up= ypos+ self.step
         #muro abajo
@@ -156,6 +175,13 @@ class Laberinto():
         right= xpos +self.step
 
         destroyed=[(xpos,up), (xpos,down), (left,ypos), (right, ypos)]
+        indest = list(map(lambda x: x.getPosition(), self.muros_indest))
+
+        for p in destroyed:
+            if p not in indest :
+                xpos=p[0]
+                ypos=p[1]
+                self.explosion.append(Explosion(self.scale,xpos,ypos, Bomba.getTime()))
 
         for x in self.muros_dest:
             if x.getPosition() in destroyed:
@@ -167,11 +193,11 @@ class Laberinto():
                 self.enemies.remove(e)
 
         if self.hero.getPosition() in destroyed:
-            self.hero.dead=True
+            self.hero.isKilled()
 
         self.ocupados.remove(Bomba.getPosition())
 
-    def loop(self, v_x, v_pos, s_pos, op):
+    def loop(self, v_x, v_pos, s_pos, op, time):
         """
 
         :param v_x: boolean is x variable? if False-> y is variable
@@ -191,7 +217,10 @@ class Laberinto():
 
             if point in indest:
                 return
+            #create explosion
+
             else:
+                self.explosion.append(Explosion(self.scale, point[0], point[1], time))
                 for m in self.muros_dest:
                     if m.getPosition()== point:
                         self.muros_dest.remove(m)
@@ -209,13 +238,13 @@ class Laberinto():
         xpos = pos[0]
         ypos = pos[1]
         #abajo:
-        self.loop(False,ypos,xpos, "-")
+        self.loop(False,ypos,xpos, "-", Bomb.getTime())
         #arriba:
-        self.loop(False,ypos,xpos,"+")
+        self.loop(False,ypos,xpos,"+", Bomb.getTime())
         #izquierda
-        self.loop(True,xpos, ypos, "-")
+        self.loop(True,xpos, ypos, "-", Bomb.getTime())
         #derecha
-        self.loop(True,xpos,ypos, "+")
+        self.loop(True,xpos,ypos, "+", Bomb.getTime())
         self.ocupados.remove(Bomb.getPosition())
 
     def givePowerup(self, hero):
@@ -225,15 +254,14 @@ class Laberinto():
                 hero.getPowerup(x)
                 self.powerups.remove(x)
 
+    def checkExplosion(self, time):
+        for exp in self.explosion:
+            exp.burn(time,self)
+
+    def removeExplosion(self, explosion):
+        self.explosion.remove(explosion)
+
     def removeHero(self):
         for e in self.enemies:
             if e.killHero(self.hero):
                 self.hero.isKilled()
-
-
-
-
-
-
-
-

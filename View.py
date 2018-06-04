@@ -26,7 +26,6 @@ class View:
 
         for p in self.pjs:
             p.dibujar()
-        self.explosion.dibujar()
 
     def init(self):
 
@@ -52,7 +51,6 @@ class View:
 
         #init view objects
         self.model = Laberinto(5, 520, 600)
-        self.explosion= Explosion(5, 140, 140)
         self.pjs.append(self.model)
         return
 

@@ -57,7 +57,7 @@ class Bomb(Figure):
         glEnd()
 
     def isReady(self, time):
-        return time == self.timetolive
+        return time >= self.timetolive
 
     def destroyItems(self, laberinto):
         laberinto.removeItems(self)
@@ -70,4 +70,6 @@ class Bomb(Figure):
         ypos = self.y0 + self.altura * self.scale / 2
         return (xpos, ypos)
 
+    def getTime(self):
+        return self.timetolive
 
