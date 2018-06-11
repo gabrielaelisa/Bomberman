@@ -29,7 +29,7 @@ class Laberinto():
 
     def init(self):
 
-        self.hero = Frutilla(5, 60, 460)
+        self.hero = Frutilla(self.scale, 60, 460)
         heropath= [(60,460), (100,460), (140,460)]
 
 
