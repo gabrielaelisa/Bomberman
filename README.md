@@ -9,12 +9,12 @@ Pygame and Opengl implementation of Boberman game:
 ## How to play the game:
 - Run main.py file
 - as soon as the pygame window opens use the following keys:
-           * left arrow ´<-´ for 1 step left
-           * right arrow '->' for 1 step right
-           * up arrow for 1 step up
-           * down arrow for 1 step down
-           * 'a' key to put a bomb in current position
-           ![bombas](https://github.com/gabrielaelisa/PygameBomberman/blob/master/images/bombas.PNG)
+    * left arrow ´<-´ for 1 step left
+    * right arrow '->' for 1 step right
+    * up arrow for 1 step up
+    * down arrow for 1 step down
+    * 'a' key to put a bomb in current position
+    ![bombas](https://github.com/gabrielaelisa/PygameBomberman/blob/master/images/bombas.PNG)
 
 - a maximum of 2 bombs can be displayed at the same time w/o powerup
 - a range of 1 block each direction is destroyed w/o powerup
@@ -29,7 +29,3 @@ Pygame and Opengl implementation of Boberman game:
 
 ## The game MVC
 ![moel](https://github.com/gabrielaelisa/PygameBomberman/blob/master/images/model.png)
-
-
-
-
